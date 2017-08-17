@@ -225,54 +225,21 @@ scatter.smooth(x)
 # number? (Assume independence of attempts.)
 
 
+#Probability that one long-distance telephone calls is misdirected 
+p = 1/200 
+p
 
-# Binomial Distribution
+#probability that at least one in five attempted telephone calls 
+# reaches the wrong number =
+  
+#  1 - probability that none of the five calls are misdirected 
+ 
+misdirected_calls<-{
+ 1-(1-p)^5
+ 1 - (1-1/200)^5
+}
 
-#The binomial distribution is a discrete probability distribution. 
-#It describes the outcome of n independent trials in an experiment. 
-#Each trial is assumed to have only two outcomes, either success or 
-#failure. 
-
-#The Binomial distribution f(n,p) is represented R by 
-#dbinom(x, size, prob)
-#pbinom(x, size, prob)
-#qbinom(p, size, prob)
-#rbinom(n, size, prob)
-#Following is the description of the parameters used ???
-
-#x is a vector of numbers.
-
-#p is a vector of probabilities.
-
-#n is number of observations.
-
-#size is the number of trials.
-
-#prob is the probability of success of each trial.
-
-
-#In the formula, n is the number of trials of some random process that 
-#can take on one of two discrete values, 
-#say 1 for success and 0 for failure, and p is the probability of success for each trial. 
-#The probability density dbinom and cumulative distribution pbinom are defined 
-#on the non-negative integers up to and including n.
-# For the example, we'll look at n=200 and p=0.5, like 200 misdirected calls. 
-#To figure out a good range for plotting, we will use the qbinom function 
-#to find out for a given n and p, what is the least integer that bounds 
-#the cumulative Binomial distribution above 99.9%, and what is the 
-#greatest integer that bounds below at 0.1%.
-
-lower<-qbinom(0.001, size=200, prob=0.5)
-upper<-qbinom(0.999, size=200, prob=0.5)
-n<-seq(lower,upper,1)
-q<-seq(0.001,0.999,0.001)
-dBinom200 <- data.frame(N=n, 
-                        Density=dbinom(n, size=200, prob=0.5),
-                        Distribution=pbinom(n, size=5, prob=0.5))  
-qBinom200 <- data.frame(Q=q, Quantile=qbinom(q, size=200, prob=0.5))  
-head(dBinom200)
-
-
+misdirected_calls
 
 
 #5. Returns on a certain business venture, to the nearest $1,000, are known to follow the
@@ -291,3 +258,30 @@ head(dBinom200)
 #(iv) What is the good measure of the risk involved in a venture of this kind? Compute
 #this measure
 
+#Q 5(i) What is the most likely monetary outcome of the business venture?
+# Ans 5(i)
+#The most likely monetary outcome of the business venture: x = 2000 
+#with the highest probability of 0.3.
+
+#Q5 (ii) Is the venture likely to be successful? Explain.
+#Ans 5 (ii)
+
+   p(x=1000)+p(x=2000)+p(x=3000)= sum(0.2, 0.3, 0.1)
+   
+  p(x)<-(0.6)
+  
+# The business venture is likely to be successful.
+  
+# Q5 (iii) What is the long-term average earning of business ventures 
+#  of this kind? Explain.
+  
+(0.1)(−2000) + (0.1)(−1000) + (0.2)(0) + (0.2)(1000) + (0.3)(1000) + (0.1)(3000)
+   
+  
+# The long-term average earning of business ventures is INR. 800/-
+  
+# Q5(iv) What is the good measure of the risk involved in a venture of this kind? Compute
+#this measure.
+  
+#  The good measure of the risk involved in a venture of this kind 
+# is known as Standard Deviation
